@@ -10,29 +10,36 @@
       </template>
     </van-nav-bar>
     <!-- 频道标签页 -->
-    <van-tabs v-model="active" sticky animated offset-top="46" color="#007bff">
-      <van-tab :title="item.name" v-for="item in channelsList" :key="item.id">{{ item.name }}</van-tab>
+    <van-tabs v-model="channel_id" sticky animated offset-top="46" color="#007bff">
+      <van-tab :title="item.name" v-for="item in channelsList" :key="item.id" :name="item.id">
+        <ArtitleList :channelId="channel_id"></ArtitleList>
+      </van-tab>
     </van-tabs>
   </div>
 </template>
 
 <script>
 import { getUserChannels } from '@/api/channel.js'
+import ArtitleList from './ArtitleList.vue'
 export default {
   name: 'Home',
   data() {
     return {
-      active: 0,
+      channel_id: 0,
       channelsList: []
     }
   },
   async created() {
+    // 获取用户频道
     const res = await getUserChannels()
     if (res.status === 200) {
       this.channelsList = res.data.data.channels
-      console.log(this.channelsList)
+    } else {
+      this.$toast.fail('请求文章列表失败')
     }
-  }
+  },
+  methods: {},
+  components: { ArtitleList }
 }
 </script>
 

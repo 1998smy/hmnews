@@ -4,9 +4,9 @@
     <!-- 二级 路由导航 -->
     <router-view></router-view>
     <!-- 底部导航 -->
-    <van-tabbar v-model="active">
-      <van-tabbar-item icon="home-o">首页</van-tabbar-item>
-      <van-tabbar-item icon="setting-o">我的</van-tabbar-item>
+    <van-tabbar v-model="active" route>
+      <van-tabbar-item icon="home-o" to="/layout/home" replace>首页</van-tabbar-item>
+      <van-tabbar-item icon="setting-o" to="/layout/user" replace>我的</van-tabbar-item>
     </van-tabbar>
   </div>
 </template>

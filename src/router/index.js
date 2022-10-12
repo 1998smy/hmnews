@@ -2,8 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '@/views/Login/index.vue'
 import Layout from '@/views/Layout/index.vue'
-import Home from '@/views/Layout/components/Home.vue'
-import User from '@/views/Layout/components/User.vue'
+import Home from '@/views/Home/Home.vue'
+import User from '@/views/User/User.vue'
 
 Vue.use(VueRouter)
 
