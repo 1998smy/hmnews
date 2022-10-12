@@ -2,7 +2,7 @@
   <div class="artitleList-container">
     <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
       <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad" :immediate-check="false" offset="50">
-        <ArtitleItem v-for="item in artitleList" :key="item.art_id" :obj="item"></ArtitleItem>
+        <ArtitleItem v-for="item in artitleList" :key="item.art_id" :obj="item" @disLikes="disLikesFn" @reports="reportsFn"></ArtitleItem>
       </van-list>
     </van-pull-refresh>
   </div>
@@ -12,6 +12,8 @@
 import ArtitleItem from '@/views/Home/components/ArtitleItem.vue'
 import { getArtitleApi } from '@/api/artitle.js'
 import { timeAgo } from '@/utils/date.js'
+import { artitleDislikeApi } from '@/api/dislikes.js'
+import { articleReportApi } from '@/api/reports.js'
 export default {
   name: 'ArtitleList',
   props: {
@@ -60,6 +62,24 @@ export default {
     onLoad() {
       if (this.artitleList.length > 0) {
         this.getArtitlesList()
+      }
+    },
+    // 反馈不感兴趣文章
+    async disLikesFn(obj) {
+      try {
+        await artitleDislikeApi(obj.art_id)
+        this.$notify({ type: 'success', message: '反馈成功' })
+      } catch (error) {
+        this.$notify({ type: 'warning', message: '反馈失败-联系程序员' })
+      }
+    },
+    // 反馈垃圾内容
+    async reportsFn(obj, value) {
+      try {
+        await articleReportApi(obj.art_id, value, '就是其他问题')
+        this.$notify({ type: 'success', message: '举报成功' })
+      } catch (error) {
+        this.$notify({ type: 'warning', message: '举报失败' })
       }
     }
   },

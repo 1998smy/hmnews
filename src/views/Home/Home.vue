@@ -15,6 +15,8 @@
         <ArtitleList :channelId="channel_id"></ArtitleList>
       </van-tab>
     </van-tabs>
+    <!-- 频道管理 -->
+    <van-icon name="plus" class="moreChannels" />
   </div>
 </template>
 
@@ -35,7 +37,7 @@ export default {
     if (res.status === 200) {
       this.channelsList = res.data.data.channels
     } else {
-      this.$toast.fail('请求文章列表失败')
+      this.$toast.fail('请求用户频道失败')
     }
   },
   methods: {},
@@ -57,6 +59,18 @@ export default {
   // 标签页组件
   /deep/.van-tabs__content {
     padding-top: 44px;
+  }
+  /deep/ .van-tabs__wrap {
+    padding-right: 30px;
+    background-color: #fff;
+  }
+  // 频道管理 加号
+  .moreChannels {
+    position: absolute;
+    top: 62px;
+    right: 8px;
+    font-size: 14px;
+    z-index: 999;
   }
 }
 </style>
