@@ -1,13 +1,37 @@
 // 频道API
 import { request } from '@/utils/request.js'
-import store from '@/store/index.js'
 
+// 用户频道
 export const getUserChannels = function () {
   return request({
     url: '/v1_0/user/channels',
-    method: 'GET',
-    headers: {
-      Authorization: 'Bearer' + store.state.token
+    method: 'GET'
+  })
+}
+
+// 所有频道
+export const getAllChannels = function () {
+  return request({
+    url: '/v1_0/channels',
+    method: 'GET'
+  })
+}
+
+// 更新频道
+export const updateUserChannels = function (channels) {
+  return request({
+    url: '/v1_0/user/channels',
+    method: 'PUT',
+    data: {
+      channels
     }
+  })
+}
+
+// 删除频道
+export const deleteUserChannels = function (target) {
+  return request({
+    url: '/v1_0/user/channels/:' + target,
+    method: 'DELETE'
   })
 }
