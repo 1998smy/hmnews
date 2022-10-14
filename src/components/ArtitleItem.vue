@@ -19,7 +19,7 @@
           <div>
             <span>{{obj.aut_name}}</span>
             <span>{{obj.comm_count}} 评论</span>
-            <span>{{obj.pudate}}</span>
+            <span>{{obj.pubdate}}</span>
           </div>
           <van-icon name="cross" @click="show = true" />
         </div>

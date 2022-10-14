@@ -6,12 +6,13 @@
         <img src="@/assets/logo.png" alt="" class="logo">
       </template>
       <template #right>
-        <van-icon name="search" size="18" color="#fff" />
+        <van-icon name="search" size="18" color="#fff" @click="$router.push('/search')" />
       </template>
     </van-nav-bar>
     <!-- 频道标签页 -->
     <van-tabs v-model="channel_id" sticky animated offset-top="46" color="#007bff">
       <van-tab :title="item.name" v-for="item in channelsList" :key="item.id" :name="item.id">
+        <!-- 文章列表 -->
         <ArtitleList :channelId="channel_id"></ArtitleList>
       </van-tab>
     </van-tabs>

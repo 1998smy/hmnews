@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import ArtitleItem from '@/views/Home/components/ArtitleItem.vue'
+import ArtitleItem from '@/components/ArtitleItem.vue'
 import { getArtitleApi } from '@/api/artitle.js'
 import { timeAgo } from '@/utils/date.js'
 import { artitleDislikeApi } from '@/api/dislikes.js'
@@ -38,7 +38,7 @@ export default {
       if (res.status === 200) {
         // 将 后台返回的时间数据进行预处理
         res.data.data.results.forEach(obj => {
-          obj.pudate = timeAgo(obj.pubdate)
+          obj.pubdate = timeAgo(obj.pubdate)
         })
         if (res.data.data.results.length === 0) {
           this.finished = true
