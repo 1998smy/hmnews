@@ -6,7 +6,7 @@
     <!-- 文章列表 -->
     <div class="artitle-res">
       <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad" :immediate-check="false" offset="50">
-        <ArtitleItem v-for="item  in artitleList" :key="item.art_id" :obj="item" @click="artitlrInfo"></ArtitleItem>
+        <ArtitleItem v-for="item  in artitleList" :key="item.art_id" :obj="item" :isShow="false" @click.native="$router.push(`/artitle_detail?art_id=${item.art_id}`)"></ArtitleItem>
       </van-list>
     </div>
   </div>
@@ -58,9 +58,7 @@ export default {
         this.page++
         this.getSearchResultList()
       }
-    },
-    // 获取文章详情
-    artitlrInfo() {}
+    }
   },
   components: { ArtitleItem }
 }
@@ -68,6 +66,7 @@ export default {
 
 <style scoped lang="less">
 .searchRes-container {
+  position: relative;
   // 导航组件
   .van-nav-bar {
     background-color: #007bff;
@@ -79,6 +78,7 @@ export default {
       color: #fff;
     }
   }
+  // 搜索结果
   .artitle-res {
     margin-top: 46px;
   }

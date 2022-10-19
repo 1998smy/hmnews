@@ -5,8 +5,8 @@
  * @returns 处理后带标签高亮的方法
  */
 export const strLight = function (str, target) {
-  const reg = new RegExp(target, 'gi')
+  const reg = new RegExp(target, 'ig')
   return str.replace(reg, (val) => {
-    return `<sapn style="color:red">${val}</span>`
+    return `<span style="color:red">${val}</span>`
   })
 }

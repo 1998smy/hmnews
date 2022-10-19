@@ -6,7 +6,7 @@ import Home from '@/views/Home/Home.vue'
 import User from '@/views/User/User.vue'
 import Search from '@/views/Search/index.vue'
 import SearchRes from '@/views/Search/searchResult.vue'
-
+import ArtitleDetail from '@/views/ArtitleDetail/index.vue'
 Vue.use(VueRouter)
 //解决vue路由重复导航错误
 //获取原型对象上的push函数
@@ -41,12 +41,20 @@ const routes = [
     ]
   },
   {
+    path: '/user',
+    component: User
+  },
+  {
     path: '/search',
     component: Search,
   },
   {
     path: '/search/:keywords',
     component: SearchRes
+  },
+  {
+    path: '/artitle_detail',
+    component: ArtitleDetail
   }
 ]
 

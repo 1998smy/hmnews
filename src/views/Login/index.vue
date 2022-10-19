@@ -15,6 +15,7 @@
         </van-button>
       </div>
     </van-form>
+
   </div>
 </template>
 
@@ -28,10 +29,10 @@ export default {
         mobile: '13888888888',
         code: '246810'
       },
-      isLoading: false
+      isLoading: false,
+      isShow: false
     }
   },
-  mounted() {},
   methods: {
     // mapActions 需要是一个数组 或对象
     ...mapActions(['getLoginAction']),
@@ -44,7 +45,7 @@ export default {
         this.isLoading = false
         this.$router.push('/layout')
       } catch (error) {
-        this.$toast.success('手机号或密码错误')
+        this.$toast.fail('手机号或密码错误')
         this.isLoading = false
       }
     }

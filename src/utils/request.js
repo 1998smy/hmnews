@@ -32,8 +32,9 @@ export const request = function (config) {
       // token续签方式1:  去登录页重新登录, token无用, 清掉-确保路由守卫if进不去
       store.commit('SETTOKEN', '')
       router.push('/login')
+      // next();
     }
-    return Promise.reject(error)
+    return Promise.reject(err)
   })
   return instance(config)
 }

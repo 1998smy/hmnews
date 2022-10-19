@@ -21,7 +21,7 @@
             <span>{{obj.comm_count}} 评论</span>
             <span>{{obj.pubdate}}</span>
           </div>
-          <van-icon name="cross" @click="show = true" />
+          <van-icon name="cross" @click.stop="show = true" v-if="isShow" />
         </div>
       </template>
     </van-cell>
@@ -34,7 +34,8 @@ import { firstActions, secondActions } from '@/api/reports.js'
 export default {
   name: 'ArtitleItem',
   props: {
-    obj: Object
+    obj: Object,
+    isShow: Boolean
   },
   data() {
     return {

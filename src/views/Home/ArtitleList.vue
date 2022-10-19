@@ -2,7 +2,7 @@
   <div class="artitleList-container">
     <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
       <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad" :immediate-check="false" offset="50">
-        <ArtitleItem v-for="item in artitleList" :key="item.art_id" :obj="item" @disLikes="disLikesFn" @reports="reportsFn"></ArtitleItem>
+        <ArtitleItem v-for="item in artitleList" :key="item.art_id" :obj="item" :isShow="true" @disLikes="disLikesFn" @reports="reportsFn" @click.native="$router.push(`/artitle_detail/?art_id=${item.art_id}`)"></ArtitleItem>
       </van-list>
     </van-pull-refresh>
   </div>

@@ -39,6 +39,8 @@ export default {
     }
   },
   methods: {
+    // 高亮关键字
+    strLight,
     // 删除历史记录
     deleteHistory() {
       this.historyList = []
@@ -85,9 +87,7 @@ export default {
     // 搜索记录点击搜索
     searchHistoryFn(val) {
       this.$router.push({ path: `/search/${val}` })
-    },
-    // 高亮关键字
-    strLight
+    }
   },
   computed: {
     // 高亮关键字
