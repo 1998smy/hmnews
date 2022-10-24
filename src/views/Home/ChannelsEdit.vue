@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { getAllChannels } from '@/api/channel.js'
+import { getAllChannels } from '@/api'
 export default {
   name: 'ChannelsEdit',
   props: {

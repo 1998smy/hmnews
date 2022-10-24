@@ -1,7 +1,7 @@
-// 举报文章API
 import store from "@/store";
 import { request } from "@/utils/request.js";
 
+// 举报文章API
 export const articleReportApi = function (target, type, remark) {
   return request({
     url: '/v1_0/article/reports',

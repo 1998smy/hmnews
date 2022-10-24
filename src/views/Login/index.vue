@@ -41,11 +41,12 @@ export default {
       this.isLoading = true
       try {
         await this.getLoginAction(this.loginFrom)
-        this.$toast.success({ message: '登录成功', duration: 500 })
+        this.$notify({ type: 'success', message: '登录成功', duration: 500 })
         this.isLoading = false
-        this.$router.push('/layout')
+        // 判断是否有未遂地址, 跳这里, 否则去/路径
+        this.$router.replace({ path: this.$route.query.path || 'layout' })
       } catch (error) {
-        this.$toast.fail('手机号或密码错误')
+        this.$notify({ type: 'warning', message: '手机号或密码错误', duration: 500 })
         this.isLoading = false
       }
     }

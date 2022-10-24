@@ -10,10 +10,10 @@
 
 <script>
 import ArtitleItem from '@/components/ArtitleItem.vue'
-import { getArtitleApi } from '@/api/artitle.js'
+import { getArtitleApi } from '@/api'
 import { timeAgo } from '@/utils/date.js'
-import { artitleDislikeApi } from '@/api/dislikes.js'
-import { articleReportApi } from '@/api/reports.js'
+import { artitleDislikeApi } from '@/api'
+import { articleReportApi } from '@/api'
 export default {
   name: 'ArtitleList',
   props: {

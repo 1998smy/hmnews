@@ -49,10 +49,10 @@
 </template>
 
 <script>
-import { getComList, addComment } from '@/api/comment.js'
+import { getComList, addComment } from '@/api'
 import { timeAgo } from '@/utils/date.js'
-import { commentsLikes, cancelCommentLikes } from '@/api/commentLike.js'
-import { confirmCollection, cancelCollection } from '@/api/collection.js'
+import { commentsLikes, cancelCommentLikes } from '@/api'
+import { confirmCollection, cancelCollection } from '@/api'
 export default {
   name: 'CommentList',
   props: {
@@ -185,6 +185,9 @@ export default {
     }
     .com-content {
       padding: 10px 25px;
+      // max-width: 80%;
+      // 在长单词或 URL 地址内部进行换行
+      word-wrap: break-word;
     }
     .com-footer {
       color: #808080;

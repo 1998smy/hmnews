@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { getSearchRes } from '@/api/search.js'
+import { getSearchRes } from '@/api'
 import ArtitleItem from '@/components/ArtitleItem.vue'
 import { timeAgo } from '@/utils/date.js'
 export default {

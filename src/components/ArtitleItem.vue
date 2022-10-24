@@ -6,11 +6,11 @@
         <div class="title-box">
           <span>{{obj.title}}</span>
           <!-- 如果是一个图片 -->
-          <img class="image" :src="obj.cover.images[0]" alt="" v-if="obj.cover.type === 1">
+          <img class="image" v-lazy="obj.cover.images[0]" alt="" v-if="obj.cover.type === 1">
         </div>
         <!-- 如果是三张图片 -->
         <div class="image-box" v-if="obj.cover.type > 1">
-          <img class="image" :src="imgUrl" alt="" v-for="(imgUrl,index) in obj.cover.images" :key="index">
+          <img class="image" v-lazy="imgUrl" alt="" v-for="(imgUrl,index) in obj.cover.images" :key="index">
         </div>
       </template>
       <!-- 使用 label 插槽来自定义标题 -->
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { firstActions, secondActions } from '@/api/reports.js'
+import { firstActions, secondActions } from '@/api'
 export default {
   name: 'ArtitleItem',
   props: {

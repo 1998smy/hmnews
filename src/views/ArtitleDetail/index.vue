@@ -4,7 +4,8 @@
     <van-nav-bar title="文章详情" left-arrow @click-left="$router.back()" fixed>
     </van-nav-bar>
     <!-- 文章详情 -->
-    <div class="artitle-detail">
+    <van-loading size="24px" color="#1989fa" v-if="artitleInfo.title === undefined" class="isLoading">文章正在加载ing...</van-loading>
+    <div class="artitle-detail" v-else>
       <!-- 文章标题 -->
       <h6>{{artitleInfo.title}}</h6>
       <!-- 作者信息 -->
@@ -44,9 +45,9 @@
 </template>
 
 <script>
-import { getArtitleInfo } from '@/api/artitle.js'
-import { confirmFollowed, cancelFollowed } from '@/api/followed.js'
-import { confirmAttitude, cancelAttitude } from '@/api/attitude.js'
+import { getArtitleInfo } from '@/api'
+import { confirmFollowed, cancelFollowed } from '@/api'
+import { confirmAttitude, cancelAttitude } from '@/api'
 import CommentList from './CommentList.vue'
 export default {
   name: 'ArtitleDetail',
@@ -92,6 +93,8 @@ export default {
 
 <style scoped lang="less">
 .artitle-detail-container {
+  width: 100%;
+  position: relative;
   // 导航组件
   .van-nav-bar {
     background-color: #007bff;
@@ -103,10 +106,15 @@ export default {
       color: #fff;
     }
   }
+  .isLoading {
+    padding-top: 50px;
+    text-align: center;
+  }
   // 作者信息
   .artitle-detail {
     margin-top: 46px;
     padding: 10px;
+    overflow: scroll;
     h6 {
       margin: 10px 0;
     }

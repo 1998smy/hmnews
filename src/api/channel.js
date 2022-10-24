@@ -1,7 +1,7 @@
 // 频道API
 import { request } from '@/utils/request.js'
 
-// 用户频道
+// 用户的频道列表
 export const getUserChannels = function () {
   return request({
     url: '/v1_0/user/channels',
@@ -9,7 +9,7 @@ export const getUserChannels = function () {
   })
 }
 
-// 所有频道
+// 所有频道列表
 export const getAllChannels = function () {
   return request({
     url: '/v1_0/channels',

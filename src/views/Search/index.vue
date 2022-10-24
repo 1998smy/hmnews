@@ -3,7 +3,7 @@
     <!-- 搜索框 -->
     <div class="search-header">
       <van-icon class="goback" name="arrow-left" size="16" color="#fff" @click="$router.back()" />
-      <van-search v-model="keyWord" @search="onSearch" @input="updateSuggestion" shape="round" background="#007bff" placeholder="请输入搜索关键词" :autofocus="true" />
+      <van-search v-model="keyWord" @search="onSearch" @input="updateSuggestion" shape="round" background="#007bff" placeholder="请输入搜索关键词" v-fofo />
     </div>
     <!-- 搜索历史 -->
     <van-cell title="搜索历史">
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { getSuggestion } from '@/api/suggestion.js'
+import { getSuggestion } from '@/api'
 import { strLight } from '@/utils/lightStr.js'
 export default {
   name: 'Search',

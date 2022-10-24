@@ -10,7 +10,7 @@
       </template>
     </van-nav-bar>
     <!-- 频道标签页 -->
-    <van-tabs v-model="channel_id" sticky animated offset-top="46" color="#007bff">
+    <van-tabs v-model="channel_id" sticky animated offset-top="46" color="#007bff" :before-change="beforeChangeFn" @change="changeFn">
       <van-tab :title="item.name" v-for="item in channelsList" :key="item.id" :name="item.id">
         <!-- 文章列表 -->
         <ArtitleList :channelId="channel_id"></ArtitleList>
@@ -26,9 +26,10 @@
 </template>
 
 <script>
-import { getUserChannels, updateUserChannels } from '@/api/channel.js'
+import { getUserChannels, updateUserChannels } from '@/api'
 import ArtitleList from '@/views/Home/ArtitleList.vue'
 import ChannelsList from '@/views/Home/ChannelsEdit.vue'
+const nameToTop = {}
 export default {
   name: 'Home',
   data() {
@@ -40,6 +41,11 @@ export default {
   },
   created() {
     this.userChannels()
+  },
+  // 组件内导航守卫  在离开页面之前
+  beforeRouteLeave(to, from, next) {
+    from.meta.top = window.scrollY
+    next()
   },
   methods: {
     // 获取用户频道
@@ -90,6 +96,20 @@ export default {
     },
     changeChannel(obj) {
       this.channel_id = obj.id
+    },
+    // 切换标签前触发
+    beforeChangeFn() {
+      nameToTop[this.channel_id] = window.scrollY
+      // 先保存要被切走频道的滚动距离(一定要用哦this.channelId里存着的)
+      // 只有return true才会让tabs切换
+      return true
+    },
+    // 激活当前标签触发
+    changeFn() {
+      // 等 DOM 更新完毕之后，根据记录的"滚动条位置"，调用 window.scrollTo() 方法进行滚动
+      this.$nextTick(() => {
+        window.scrollTo(0, nameToTop[this.channel_id] || 0)
+      })
     }
   },
   components: { ArtitleList, ChannelsList }
@@ -117,7 +137,7 @@ export default {
   }
   // 频道管理 加号
   .moreChannels {
-    position: absolute;
+    position: fixed;
     top: 62px;
     right: 8px;
     font-size: 14px;

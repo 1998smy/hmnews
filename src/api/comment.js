@@ -14,7 +14,7 @@ export const getComList = function (art_id, offsetId) {
   })
 }
 
-// 增加评论
+// 增加文章评论
 export const addComment = function (id, value) {
   return request({
     url: '/v1_0/comments',
@@ -23,5 +23,24 @@ export const addComment = function (id, value) {
       target: id,
       content: value
     }
+  })
+}
+
+// 评论点赞
+export const commentsLikes = function (com_id) {
+  return request({
+    url: '/v1_0/comment/likings',
+    method: 'POST',
+    data: {
+      target: com_id
+    }
+  })
+}
+
+// 取消评论点赞
+export const cancelCommentLikes = function (target) {
+  return request({
+    url: '/v1_0/comment/likings/' + target,
+    method: 'DELETE'
   })
 }
